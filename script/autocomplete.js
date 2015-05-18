@@ -277,7 +277,7 @@ app.filter('highlight', ['$sce', function ($sce) {
       var exp;
 
       if (words.length) {
-        exp = = new RegExp(words, 'gi');
+        exp = new RegExp(words, 'gi');
         input = input.replace(exp, "<span class=\"highlight\">$1</span>");
       }
     }
