@@ -268,9 +268,11 @@ app.filter('highlight', ['$sce', function ($sce) {
       var words = '(' +
             searchParam.split(/\ /).join(' |') + '|' +
             searchParam.split(/\ /).join('|') +
-          ')',
-          exp = new RegExp(words, 'gi');
+          ')';
+      var exp;
+
       if (words.length) {
+        exp = = new RegExp(words, 'gi');
         input = input.replace(exp, "<span class=\"highlight\">$1</span>");
       }
     }
