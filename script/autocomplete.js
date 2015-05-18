@@ -262,12 +262,17 @@ app.directive('autocomplete', function() {
 });
 
 app.filter('highlight', ['$sce', function ($sce) {
+  var textParser = function(text) {
+    text.replace(/(\[|\])/gi,'')
+  }
+  
   return function (input, searchParam) {
+    if (typeof input === 'undefined') return '';
     if (typeof input === 'function') return '';
     if (searchParam) {
       var words = '(' +
-            searchParam.split(/\ /).join(' |') + '|' +
-            searchParam.split(/\ /).join('|') +
+            textParser(searchParam.split(/\ /).join(' |')) + '|' +
+            textParser(searchParam.split(/\ /).join('|')) +
           ')';
       var exp;
 
