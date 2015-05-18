@@ -263,7 +263,7 @@ app.directive('autocomplete', function() {
 
 app.filter('highlight', ['$sce', function ($sce) {
   var textParser = function(text) {
-    text.replace(/(\[|\])/gi,'')
+    return text.replace(/(\[|\])/gi,'')
   }
   
   return function (input, searchParam) {
