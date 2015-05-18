@@ -49,7 +49,6 @@ app.directive('autocomplete', function() {
 
         if(watching && typeof $scope.searchParam !== 'undefined' && $scope.searchParam !== null) {
           $scope.completing = true;
-          $scope.searchFilter = $scope.searchParam;
           $scope.selectedIndex = -1;
         }
 
@@ -84,7 +83,6 @@ app.directive('autocomplete', function() {
       $scope.select = function(suggestion){
         if(suggestion){
           $scope.searchParam = suggestion;
-          $scope.searchFilter = suggestion;
           if($scope.onSelect)
             $scope.onSelect(suggestion);
         }
@@ -249,10 +247,10 @@ app.directive('autocomplete', function() {
             class="{{ attrs.inputclass }}"\
             id="{{ attrs.inputid }}"\
             ng-required="{{ autocompleteRequired }}" />\
-          <ul ng-show="completing && (suggestions | filter:searchFilter).length > 0">\
+          <ul ng-show="completing && suggestions.length > 0">\
             <li\
               suggestion\
-              ng-repeat="suggestion in suggestions | filter:searchFilter track by $index"\
+              ng-repeat="suggestion in suggestions track by $index"\
               index="{{ $index }}"\
               val="{{ suggestion }}"\
               ng-class="{ active: ($index === selectedIndex) }"\
